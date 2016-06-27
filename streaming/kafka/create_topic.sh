@@ -1,0 +1,1 @@
+/usr/local/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --topic posts2015 --partition 4 --replication-factor 2

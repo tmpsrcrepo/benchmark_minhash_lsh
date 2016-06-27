@@ -1,0 +1,1 @@
+bash spawn_kafka_messages.sh 52.27.111.183 4 generateMessages
