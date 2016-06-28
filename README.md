@@ -8,13 +8,12 @@ This project is motivated by speeding up neighbor searching for recommendation/c
 ## MinHash + LSH Implementation
 
 First of all, let's define our task is to recommend posts based on Jaccard Similarity of texts. Now suppose we have three posts in the pool:
-
-![alt tag](pics/Screen Shot 2016-06-27 at 5.16.08 PM.png)
-
-
-We tokenize them, remove the stopwords
+![alt tag](pics/minhash.png)
+However
 
 ## Pipeline
+![alt tag](pics/pipeline.png)
+
 ## Evaluation
 ## Limitations & Conclusion
 
