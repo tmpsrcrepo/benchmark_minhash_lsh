@@ -24,7 +24,11 @@ The pipeline is designed for both batch and real-time benchmark of MinHash+LSH a
 ![alt tag](pics/pipeline.png)
 
 ## Evaluation
-
+Batch:
+![alt tag](pics/batch_brute_force.png)
+![alt tag](pics/time_vs_kb.png)
+Streaming:
+![alt tag](pics/streaming_spark_340.png)
 
 ## Limitations & Conclusion
 
