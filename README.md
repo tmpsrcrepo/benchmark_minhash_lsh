@@ -15,7 +15,7 @@ However, still some work to be done. The time complexity is now O(kN) for pairwi
 
 ![alt tag](pics/lsh_bands.png)
 
-There're few nice things about this approach: 1. it effectively reduces the search space utilizing the collision property of Hashing. Now the buckets become (band id, band hash). If two posts have the same chunks, they should be hashed to the same bucket. 2. It provides an estimated threshold (lowerbound) for similarity measures of items in the same group. The threshold is approximately (1/b)^(1/r). By changing band width (r) and number of bands (b), we can adjust the similarity lowerbound in order to filter out irrelevant pairs. It will be extremely useful for finding top K similar items. This feature is evaluated later in the Evaluation section.
+There're few nice things about this approach: 1. it effectively reduces the search space utilizing the collision property of Hashing. Now the buckets become (band id, band hash). If two posts have the same chunks, they should be hashed to the same bucket. 2. It provides an estimated threshold (lowerbound): the likelihood of two similar items in the same group > 1/2. The threshold is approximately (1/b)^(1/r). By changing band width (r) and number of bands (b), we can adjust the similarity lowerbound in order to filter out irrelevant pairs. It will be extremely useful for finding top K similar items. This feature is evaluated later in the Evaluation section.
 
 ## Pipeline
 
@@ -52,7 +52,7 @@ The pipeline is designed for both batch and real-time benchmark of MinHash+LSH a
   1. Tune the parameters in order to find the better balance between time and precision value. 
   2. Use higher similarity level (above 60%) to speed up neighbor searching. Even though the algorithm may fail finding neighbors for several items which are unique/new, the solution could be either linear scan for exact search or select a non-personalized/most popular item as a neighbor.
 
-
+x
 
 
 
