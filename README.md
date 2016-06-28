@@ -24,14 +24,29 @@ The pipeline is designed for both batch and real-time benchmark of MinHash+LSH a
 ![alt tag](pics/pipeline.png)
 
 ## Evaluation
-Batch:
-![alt tag](pics/batch_brute_force.png)
-![alt tag](pics/time_vs_kb.png)
-Streaming:
-![alt tag](pics/streaming_spark_340.png)
+* Batch:
+   First of all, I compared the time and number of shuffles between brute-force and MinHash+LSH algorithm. From the experiment on 780k entries of Reddit posts, MinHash+LSH achieves 4000X speed up mainly because it filters out a lot of pairs in the band hash grouping.
+  ![alt tag](pics/batch_brute_force.png)
+  
+   Secondly, I wanted to investigate the effect of K (# hash functions), b and r on time complexity and precision (% pairs which have similarity levels above the threshold). Based on the following results, we can see that the precision value is increasing when k and threshold value are increasing. Even though fewer items are filtered, but more items are actually similar. For this dataset, medium size of k (~200 to 300) works pretty well.
+  ![alt tag](pics/threshold.png)
+  ![alt tag](pics/time_vs_kb.png)
+
+* Streaming:
+   Streaming evaluation is conducted when 340 events/sec are sent from Kafka to Spark Streaming. It takes 8 sec to finish processing 10 sec window (6 t4.xlarge nodes, 1024 MB).
+   ![alt tag](pics/streaming_spark_340.png)
 
 ## Limitations & Conclusion
-
+* Experiment Settings:
+  1. Recall value is not collected for more parameter combinations due to the time limit. Otherwise we can evaluate how the threshold level/k value affects the recall value. And we can see how many similar items are filtered out.
+  2. Streaming evaluation is not as complete as batch evaluation, since this algorithm can bring major speed up on batch job. The purpose of streaming part is to see how it handles online peak usage. If time is permitted, I should conduct a more comprehensive benchmark.
+  3. Only used relatively small dataset.
+* Algorithm:
+  1. This algorithm may filter out or include item pairs which are not similar (precision&recall). 
+  2. This algorithm works specifically for jaccard similarity. If you want to calculate approximate neighbors for other similarity metrics, please refer to this paper: https://arxiv.org/pdf/1408.2927.pdf.
+* Application:
+  1. Tune the parameters in order to find the better balance between time and precision value. 
+  2. Use higher similarity level (above 60%) to speed up neighbor searching. Even though the algorithm may fail finding neighbors for several items which are unique/new, the solution could be either linear scan for exact search or select a non-personalized/most popular item as a neighbor.
 
 
 
