@@ -26,10 +26,13 @@ The pipeline is designed for both batch and real-time benchmark of MinHash+LSH a
 ## Evaluation
 * Batch:
    First of all, I compared the time and number of shuffles between brute-force and MinHash+LSH algorithm. From the experiment on 780k entries of Reddit posts, MinHash+LSH achieves 4000X speed up mainly because it filters out a lot of pairs in the band hash grouping.
+
    <img src="pics/batch_brute_force.png" height="300" align="middle" />
 
    Secondly, I wanted to investigate the effect of K (# hash functions), b and r on time complexity and precision (% pairs which have similarity levels above the threshold). Based on the following results, we can see that the precision value is increasing when k and threshold value are increasing. Even though fewer items are filtered, but more items are actually similar. For this dataset, medium size of k (~200 to 300) works pretty well.
+   
    <img src="pics/threshold.png" height="300" align="middle" />
+   
    <img src="pics/time_vs_kb.png" height="400" align="middle" />
 
 
