@@ -52,7 +52,7 @@ The pipeline is designed for both batch and real-time benchmark of MinHash+LSH a
   1. Tune the parameters in order to find the better balance between time and precision value. 
   2. Use higher similarity level (above 60%) to speed up neighbor searching. Even though the algorithm may fail finding neighbors for several items which are unique/new, the solution could be either linear scan for exact search or select a non-personalized/most popular item as a neighbor.
 
-x
+
 
 
 
