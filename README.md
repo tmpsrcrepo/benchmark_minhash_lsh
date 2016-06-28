@@ -8,8 +8,9 @@ This project is motivated by speeding up neighbor searching for recommendation/c
 ## MinHash + LSH Implementation
 
 First of all, let's define our task is to recommend posts based on Jaccard Similarity of texts. Now suppose we have three posts in the pool:
-![alt tag](pics/minhash.png)
-However
+![alt tag](pics/minhash_.png)
+
+![alt tag](pics/lsh_bands_.png)
 
 ## Pipeline
 ![alt tag](pics/pipeline.png)
