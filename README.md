@@ -29,8 +29,8 @@ The pipeline is designed for both batch and real-time benchmark of MinHash+LSH a
   ![alt tag](pics/batch_brute_force.png)
   
    Secondly, I wanted to investigate the effect of K (# hash functions), b and r on time complexity and precision (% pairs which have similarity levels above the threshold). Based on the following results, we can see that the precision value is increasing when k and threshold value are increasing. Even though fewer items are filtered, but more items are actually similar. For this dataset, medium size of k (~200 to 300) works pretty well.
-  ![alt tag](pics/threshold.png =100x20)
-  ![alt tag](pics/time_vs_kb.png)
+  ![](pics/threshold.png | height=100)
+  ![alt tag](pics/time_vs_kb.png | height=100)
 
 * Streaming:
    Streaming evaluation is conducted when 340 events/sec are sent from Kafka to Spark Streaming. It takes 8 sec to finish processing 10 sec window (6 t4.xlarge nodes, 1024 MB).
