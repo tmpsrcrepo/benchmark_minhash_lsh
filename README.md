@@ -11,11 +11,11 @@ First of all, let's define our task is to recommend posts based on Jaccard Simil
 
 ![alt tag](pics/minhash_.png)
 
-However, still some work to be done. The time complexity is now O(kN) for pairwise lookups. In order to further reduce the search space, LSH is introduced to divide the hash value table into b bands and r rows (each band combines r rows). Then re-hash and generate the following table:
+However, still some work to be done. The time complexity is now O(kN) for pairwise lookups. In order to further reduce the search space, LSH is introduced to divide the hash value table into b bands and r columns (each band combines r columns). Then re-hash and generate the following table:
 
 ![alt tag](pics/lsh_bands.png)
 
-There're few nice things about this approach: 1. it effectively reduces the search space utilizing the collision property of Hashing. Now the buckets become (band id, band hash). If two posts have the same chunks, they should be hashed to the same bucket. 2. It provides an estimated threshold (lowerbound): the likelihood of two similar items in the same group > 1/2. The threshold is approximately (1/b)^(1/r). By changing band width (r) and number of bands (b), we can adjust the similarity lowerbound in order to filter out irrelevant pairs. It will be extremely useful for finding top K similar items. This feature is evaluated later in the Evaluation section.
+There're few nice things about this approach: 1. it effectively reduces the search space utilizing the collision property of Hashing. Now the buckets become (band id, band hash). If two posts have the same chunks, they should be hashed to the same bucket. 2. It provides an estimated threshold (lowerbound): the likelihood of two similar items in the same group. The threshold is approximately (1/b)^(1/r). By changing band width (r) and number of bands (b), we can adjust the similarity lowerbound in order to filter out irrelevant pairs. It will be extremely useful for finding top K similar items. This feature is evaluated later in the Evaluation section.
 
 ## Pipeline
 
